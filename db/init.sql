@@ -11,3 +11,9 @@ CREATE TABLE IF NOT EXISTS users.accounts (
   email VARCHAR(255),
   password VARCHAR(255)
 );
+CREATE UNIQUE INDEX idx_users_accounts_username ON users.accounts(username);
+CREATE UNIQUE INDEX idx_users_accounts_email ON users.accounts(email);
+
+INSERT INTO users.accounts (username, email, password) VALUES ('PatThomas', 'patthomassoftware@gmail.com', 'password');
+INSERT INTO users.accounts (username, email, password) VALUES ('OatRhombus', 'oat@rhom.bus', 'password');
+INSERT INTO users.accounts (username, email, password) VALUES ('BeesHere', 'bees@here.com', 'password');

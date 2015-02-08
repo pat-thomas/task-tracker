@@ -6,6 +6,6 @@
   :dependencies [[org.clojure/clojure        "1.6.0"]
                  [org.clojure/data.json      "0.2.5"]
                  [com.stuartsierra/component "0.2.2"]
-                 [org.clojure/java.jdbc      "0.3.5"]
+                 [org.clojure/java.jdbc      "0.3.6"]
                  [mysql/mysql-connector-java "5.1.25"]
                  [korma                      "0.4.0"]])
