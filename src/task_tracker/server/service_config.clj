@@ -1,7 +1,7 @@
 (ns task-tracker.server.service-config
   (:require [clojure.data.json :as json]))
 
-(def config-atom (atom nil))
+(def ^{:private true} config-atom (atom nil))
 
 (defn load-config!
   [config-file-path]
