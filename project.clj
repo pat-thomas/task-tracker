@@ -8,4 +8,6 @@
                  [com.stuartsierra/component "0.2.2"]
                  [org.clojure/java.jdbc      "0.3.6"]
                  [mysql/mysql-connector-java "5.1.25"]
-                 [korma                      "0.4.0"]])
+                 [ring/ring-core             "1.3.2"]
+                 [com.relaynetwork/kinematic "1.3.8"]
+                 [http-kit                   "2.1.16"]])

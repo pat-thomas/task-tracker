@@ -1,17 +1,13 @@
 (ns task-tracker.server.core
-  (:require [com.stuartsierra.component         :as component]
-            [task-tracker.server.service-config :as service-config :refer [config]]
-            [task-tracker.server.db             :as db]))
-
-(def system
-  (component/system-map
-   :db (db/new-database (config :db))))
+  (:require [task-tracker.server.service-config :as service-config :refer [config]]
+            [task-tracker.server.webserver      :as webserver]
+            [task-tracker.server.api.core       :as api]))
 
 (defn init!
+  "Entry point for app."
   []
-  (do
-    (service-config/load-config! "service-config.json")
-    (component/start system)))
+  (service-config/load-config! "service-config.json")
+  (webserver/start-server (config :webserver :port) #'api/web-app))
 
 (comment
   (init!)
