@@ -10,4 +10,24 @@
                  [mysql/mysql-connector-java "5.1.25"]
                  [ring/ring-core             "1.3.2"]
                  [com.relaynetwork/kinematic "1.3.8"]
-                 [http-kit                   "2.1.16"]])
+                 [http-kit                   "2.1.16"]
+
+                 ;; client side
+                 [org.clojure/clojurescript  "0.0-2760"]
+                 [org.omcljs/om              "0.8.8"]
+                 [om-utils                   "0.4.0"]
+                 [secretary                  "1.2.1"]
+                 [com.cognitect/transit-cljs "0.8.199"]]
+  :cljsbuild {:builds [{:id           "development"
+                        :source-paths ["src/task_tracker/app"]
+                        :compiler     {:output-to     "task_tracker.js"
+                                       :output-dir    "out"
+                                       :optimizations :none
+                                       :source-map    true}}
+                       {:id           "production"
+                        :source-paths ["src/task_tracker/app"]
+                        :compiler     {:output-to     "task_tracker_prod.js"
+                                       :optimizations :advanced
+                                       :pretty-print  false
+                                       :preamble      ["react/react.min.js"]
+                                       :externs       ["react/externs/react.js"]}}]})
