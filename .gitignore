@@ -9,3 +9,7 @@ pom.xml.asc
 /.nrepl-port
 .hgignore
 .hg/
+/out
+task_tracker.js
+task_tracker_prod.js
+/.sass-cache/
