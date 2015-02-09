@@ -1,8 +1,9 @@
 (ns task-tracker.app.router
-  (:require [task-tracker.app.state   :as app-state]
-            [task-tracker.app.history :as history]
-            [task-tracker.app.components.home :as home]
-            [secretary.core           :as secretary :refer-macros [defroute]])
+  (:require [task-tracker.app.state              :as app-state]
+            [task-tracker.app.history            :as history]
+            [task-tracker.app.components.home    :as home]
+            [task-tracker.app.components.account :as account]
+            [secretary.core                      :as secretary :refer-macros [defroute]])
   (:require-macros [task-tracker.app.router :refer [current-view-route!]]))
 
 (defn set-current-view!
@@ -15,11 +16,13 @@
 
 (current-view-route! home "/")
 (current-view-route! home)
+(current-view-route! account)
 
 (defroute "*"
   []
   (history/redirect "home"))
 
 (def routing-table
-  {""     home/root
-   "home" home/root})
+  {""        home/root
+   "home"    home/root
+   "account" account/root})

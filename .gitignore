@@ -13,3 +13,4 @@ pom.xml.asc
 task_tracker.js
 task_tracker_prod.js
 /.sass-cache/
+/resources/public

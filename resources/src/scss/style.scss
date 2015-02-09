@@ -1,0 +1,49 @@
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+body {
+  font-family:      'Helvetica';
+  background-color: #304;
+  background-color: #111;
+  color:            #ede;
+}
+
+#navbar {
+  height:           40px;
+  width:            100%;
+  background-color: #602;
+  color:            #fff;
+  display:          inline-block;
+  position:         relative;
+
+  ul#navbar-list {
+    position: absolute;
+    right:    0px;
+    height:   100%;
+    width:    75%;
+    padding:  4px;
+
+    li.navbar-list-item {
+      float:         right;
+      padding:       7px;
+      margin-left:   6px;
+      border-radius: 6px;
+      &:hover {
+        cursor:           pointer;
+        background-color: #925;
+        color:            #fff;
+      }
+    }
+  }
+}
+
+#account {
+  .account-field {
+    margin: 10px;
+    .account-field-label {
+      margin-right: 10px;
+    }
+  }
+}
