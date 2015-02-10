@@ -1,7 +1,8 @@
 (ns task-tracker.app.components.task-board
   (:require [om.core :as om  :include-macros true]
             [om.dom  :as dom :include-macros true]
-            [task-tracker.app.history :as history])
+            [task-tracker.app.history :as history]
+            [task-tracker.app.xhr :as xhr])
   (:require-macros [om-utils.core :refer [defcomponent]]))
 
 (defcomponent header
@@ -35,15 +36,21 @@
      #js {:id "task-rows"}
      (map (fn [task-data]
             (om/build cell data {:opts (assoc task-data :column-number column-number)}))
-          ;;data (fetch from server eventually)
-          [{:task-state       0
-            :task-description "foo"}
-           {:task-state       1
-            :task-description "bar"}
-           {:task-state       2
-            :task-description "baz"}])))))
+          data)))))
 
 (defcomponent root
+  (will-mount
+   (xhr/xhr-req
+    {:method      :get
+     :url         (str "user/" (get-in data [:account-info :user-ttid]) "/tasks")
+     :on-complete (fn [resp]
+                    (om/update! data
+                                :tasks
+                                (map
+                                 (fn [rec]
+                                   {:task-state       (get rec "task_state")
+                                    :task-description (get rec "task_description")})
+                                 (get resp "recs"))))}))
   (render
    (apply
     dom/div

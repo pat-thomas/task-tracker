@@ -11,3 +11,4 @@ CREATE UNIQUE INDEX idx_users_tasks_user_ttid_task_ttid ON users.tasks(user_ttid
 
 INSERT INTO users.tasks (user_ttid, task_ttid, task_state, task_description) VALUES ('mock-pat-thomas', 'mock-pat-thomas-task-1', 0, "Write some code.");
 INSERT INTO users.tasks (user_ttid, task_ttid, task_state, task_description) VALUES ('mock-pat-thomas', 'mock-pat-thomas-task-2', 1, "Take a shower.");
+INSERT INTO users.tasks (user_ttid, task_ttid, task_state, task_description) VALUES ('mock-pat-thomas', 'mock-pat-thomas-task-3', 1, "Feed the cats.");
