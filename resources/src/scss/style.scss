@@ -13,7 +13,7 @@ body {
 #navbar {
   height:           40px;
   width:            100%;
-  background-color: #602;
+  background-color: #300;
   color:            #fff;
   display:          inline-block;
   position:         relative;
@@ -26,13 +26,12 @@ body {
     padding:  4px;
 
     li.navbar-list-item {
-      float:         right;
-      padding:       7px;
-      margin-left:   6px;
-      border-radius: 6px;
+      float:       right;
+      padding:     7px;
+      margin-left: 6px;
       &:hover {
         cursor:           pointer;
-        background-color: #925;
+        background-color: #680000;
         color:            #fff;
       }
     }
