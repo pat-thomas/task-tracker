@@ -8,10 +8,17 @@
   [^clojure.lang.Keyword table ^java.util.Map criteria]
   (str
    (format "SELECT * FROM %s WHERE " (name table))
-   (reduce (fn [acc [k v]]
-             (str acc (name k) "='" v "'"))
-           ""
-           criteria)
+   (if (> (count (vals criteria)) 1)
+     (str (reduce (fn [acc [k v]]
+                    (str acc (name k) "='" v "' AND "))
+                  ""
+                  (drop-last criteria))
+          (let [[k v] (last criteria)]
+            (str (name k) "='" v "'")))
+     (reduce (fn [acc [k v]]
+               (str acc (name k) "='" v "'"))
+             ""
+             criteria))
    ";"))
 
 (defn find-by

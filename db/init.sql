@@ -9,11 +9,13 @@ CREATE DATABASE IF NOT EXISTS users;
 CREATE TABLE IF NOT EXISTS users.accounts (
   username VARCHAR(255),
   email VARCHAR(255),
-  password VARCHAR(255)
+  password VARCHAR(255),
+  user_ttid VARCHAR(255)
 );
 CREATE UNIQUE INDEX idx_users_accounts_username ON users.accounts(username);
+CREATE UNIQUE INDEX idx_users_accounts_user_ttid ON users.accounts(user_ttid);
 CREATE UNIQUE INDEX idx_users_accounts_email ON users.accounts(email);
 
-INSERT INTO users.accounts (username, email, password) VALUES ('PatThomas', 'patthomassoftware@gmail.com', 'password');
-INSERT INTO users.accounts (username, email, password) VALUES ('OatRhombus', 'oat@rhom.bus', 'password');
-INSERT INTO users.accounts (username, email, password) VALUES ('BeesHere', 'bees@here.com', 'password');
+INSERT INTO users.accounts (username, email, password, user_ttid) VALUES ('PatThomas', 'patthomassoftware@gmail.com', 'password', 'mock-pat-thomas');
+INSERT INTO users.accounts (username, email, password, user_ttid) VALUES ('OatRhombus', 'oat@rhom.bus', 'password', 'mock-oat-rhombus');
+INSERT INTO users.accounts (username, email, password, user_ttid) VALUES ('BeesHere', 'bees@here.com', 'password', 'mock-bees-here');
