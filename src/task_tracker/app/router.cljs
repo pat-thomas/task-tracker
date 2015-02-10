@@ -10,7 +10,7 @@
 
 (defn set-current-view!
   [current-view & [opts]]
-  (if-not opts
+  (if opts
     (println "setting current view to" current-view "with opts" opts)
     (println "setting current view to" current-view))
   (let [nascent {:view current-view}]
@@ -23,7 +23,7 @@
 (current-view-route! home)
 (current-view-route! account)
 (current-view-route! task-board)
-(current-view-route! task-detail "/task-detail/:task-id" [task-id])
+(current-view-route! task-detail "/task-detail/:task-ttid" [task-ttid])
 
 (defroute "*"
   []

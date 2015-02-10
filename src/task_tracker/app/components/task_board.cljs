@@ -13,14 +13,14 @@
     column-title)))
 
 (defcomponent cell
-  [column-number task-state task-description task-id]
+  [column-number task-state task-description task-ttid]
   (render
    (dom/div
     #js {:className (if (= column-number task-state)
                       "cell active"
                       "cell inactive")
          :onClick   (fn [_]
-                      (history/redirect (str "task-detail/" (or task-id "none"))))}
+                      (history/redirect (str "task-detail/" task-ttid)))}
     (if (= column-number task-state)
       task-description
       "-"))))
@@ -49,7 +49,8 @@
                                 (map
                                  (fn [rec]
                                    {:task-state       (get rec "task_state")
-                                    :task-description (get rec "task_description")})
+                                    :task-description (get rec "task_description")
+                                    :task-ttid (get rec "task_ttid")})
                                  (get resp "recs"))))}))
   (render
    (apply
@@ -57,7 +58,7 @@
     #js {:id "task-board"}
     (map (fn [column-data]
            (om/build column (:tasks data) {:opts column-data}))
-         (or (:task-board-columns data)
+         (or (:task-board-columns data) ;; fetch this from server eventually
              [{:column-title "To Do" :column-number 0}
               {:column-title "In Progress" :column-number 1}
               {:column-title "Done" :column-number 2}])))))
