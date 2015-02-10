@@ -13,3 +13,9 @@
                                        :task_ttid task-ttid})]
     (when-not (empty? recs)
       (first recs))))
+
+(defn find-by-task-ttid
+  [task-ttid]
+  (let [recs (db/find-by :users.tasks {:task_ttid task-ttid})]
+    (when-not (empty? recs)
+      (first recs))))
