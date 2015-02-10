@@ -12,10 +12,12 @@
       (dom/label
        #js {:className "account-field-label"}
        (str field-label-text ":"))
-      (dom/input #js {:onChange (fn [e]
-                                  (let [val (.. e -target -value)]
-                                    (om/update! data data-key val)))
-                      :value (data-key data)})))))
+      (dom/input
+       #js {:onChange (fn [e]
+                        (let [val (.. e -target -value)]
+                          (om/update! data data-key val)))
+            :value    (data-key data)
+            :type     (:field-type opts)})))))
 
 (defcomponent root
   (render
@@ -26,4 +28,5 @@
     (om/build account-field (:account-info data) {:opts {:field-name       "email"
                                                          :field-label-text "Email"}})
     (om/build account-field (:account-info data) {:opts {:field-name       "password"
-                                                         :field-label-text "Password"}}))))
+                                                         :field-label-text "Password"
+                                                         :field-type       "password"}}))))
