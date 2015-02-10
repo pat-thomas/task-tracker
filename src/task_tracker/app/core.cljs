@@ -13,7 +13,7 @@
   (render
    (dom/div
     #js {:id "app"}
-    (om/build navbar/root data {})
+    (om/build navbar/root data)
     (dom/div
      #js {:id "content-container"}
      (let [current-view (:current-view data)]

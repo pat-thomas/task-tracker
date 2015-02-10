@@ -51,3 +51,43 @@ body {
     }
   }
 }
+
+#task-board {
+  .column {
+    padding: 5px;
+    background-color: #300;
+    float: left;
+    width: 30%;
+
+    .cell {
+      margin-bottom: 8px;
+      padding: 5px;
+      &.active {
+        background-color: #480000;
+        &:hover {
+          background-color: #680000;
+          cursor: pointer;
+        }
+      }
+      &.inactive {
+        color: #300;
+      }
+      &:last-of-type {
+        margin-bottom: 0px;
+      }
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 4px;
+    }
+
+    &:first {
+      margin-left: 0px;
+    }
+    margin-right: 10px;
+    &:last {
+      margin-right: 0px;
+    }
+  }
+}
