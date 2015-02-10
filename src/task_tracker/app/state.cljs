@@ -1,3 +1,3 @@
 (ns task-tracker.app.state)
 
-(def app-state (atom {}))
+(def app-state (atom {:account-info {}}))
