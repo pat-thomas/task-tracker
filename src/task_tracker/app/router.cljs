@@ -3,6 +3,7 @@
             [task-tracker.app.history            :as history]
             [task-tracker.app.components.home    :as home]
             [task-tracker.app.components.account :as account]
+            [task-tracker.app.components.task-board :as task-board]
             [secretary.core                      :as secretary :refer-macros [defroute]])
   (:require-macros [task-tracker.app.router :refer [current-view-route!]]))
 
@@ -17,12 +18,14 @@
 (current-view-route! home "/")
 (current-view-route! home)
 (current-view-route! account)
+(current-view-route! task-board)
 
 (defroute "*"
   []
   (history/redirect "home"))
 
 (def routing-table
-  {""        home/root
-   "home"    home/root
-   "account" account/root})
+  {""           home/root
+   "home"       home/root
+   "account"    account/root
+   "task-board" task-board/root})

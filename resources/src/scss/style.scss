@@ -39,9 +39,13 @@ body {
   }
 }
 
+#content-container {
+  padding: 10px;
+}
+
 #account {
   .account-field {
-    margin: 10px;
+    margin-bottom: 5px;
     .account-field-label {
       margin-right: 10px;
     }

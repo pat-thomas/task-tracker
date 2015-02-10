@@ -26,4 +26,5 @@
                   (om/build navbar-link data {:opts (assoc opts :current-view (:current-view data))}))
                 [{:link-text "Sign Out" :link-url "sign-out"}
                  {:link-text "My Account" :link-url "account"}
+                 {:link-text "My Task Board" :link-url "task-board"}
                  {:link-text "Home" :link-url "home"}])))))

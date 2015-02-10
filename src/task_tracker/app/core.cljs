@@ -15,7 +15,7 @@
     #js {:id "app"}
     (om/build navbar/root data {})
     (dom/div
-     #js {:id "main-content"}
+     #js {:id "content-container"}
      (let [current-view (:current-view data)]
        (om/build (get router/routing-table (:view current-view)) data {:opts (:opts current-view)}))))))
 
