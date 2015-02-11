@@ -21,7 +21,7 @@
      (dom/div
       nil
       (dom/label nil "Task description: ")
-      (dom/input
+      (dom/textarea
        #js {:value    (om/get-state owner :task-description)
             :onChange (fn [e]
                         (let [val (.. e -target -value)]

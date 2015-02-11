@@ -95,4 +95,16 @@ body {
   input {
     size: 200;
   }
+  button {
+    width: 50px;
+    height: 25px;
+    margin-top: 10px;
+    background-color: #480000;
+    color: #fff;
+    border: none;
+    &:hover {
+      cursor: pointer;
+      background-color: #680000;
+    }
+  }
 }
