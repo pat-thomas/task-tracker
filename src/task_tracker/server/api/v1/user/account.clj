@@ -5,7 +5,7 @@
 (defapi :api ["user/:user-ttid/account"])
 
 (api-get
- (if-let [rec (model/find-by-username (get-in request [:route-params :username]))]
+ (if-let [rec (model/find-by-ttid (get-in request [:route-params :user-ttid]))]
    {:status "OK"
     :rec    rec}
    {:status "NotFound"}))

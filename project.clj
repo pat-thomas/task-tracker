@@ -7,6 +7,7 @@
                  [org.clojure/data.json      "0.2.5"]
                  [com.stuartsierra/component "0.2.2"]
                  [org.clojure/java.jdbc      "0.3.6"]
+                 [java-jdbc/dsl              "0.1.1"]
                  [mysql/mysql-connector-java "5.1.25"]
                  [ring/ring-core             "1.3.2"]
                  [com.relaynetwork/kinematic "1.3.8"]

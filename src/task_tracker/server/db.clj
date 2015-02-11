@@ -1,5 +1,6 @@
 (ns task-tracker.server.db
   (:require [clojure.java.jdbc                  :as jdbc]
+            [java-jdbc.sql                      :as sql-dsl]
             [task-tracker.server.service-config :refer [config]]))
 
 (def db (config :db))
@@ -33,3 +34,34 @@
    db
    table
    params))
+
+(comment
+  (gen-where-clause-for-update {:task_description "Debone a chicken."
+                                :task_state 2})
+  )
+
+(defn- gen-where-clause-for-update
+  [^java.util.Map update-params]
+  (reduce
+   (fn [acc [k v]]
+     (conj acc (str (name k) " = ?") v))
+   []
+   update-params))
+
+(defn update-record
+  [^clojure.lang.Keyword table ^java.util.Map lookup-fields ^java.util.Map update-params]
+  (let [where-clause (sql-dsl/where lookup-fields)]
+    (jdbc/update!
+     db
+     table
+     update-params
+     where-clause)))
+
+
+(comment
+  (update-record
+   :users.tasks
+   {:user_ttid "mock-pat-thomas"
+    :task_ttid "mock-pat-thomas-task-1"}
+   {:task_description "Debone a chicken."})
+  )

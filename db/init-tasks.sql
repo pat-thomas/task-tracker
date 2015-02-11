@@ -13,3 +13,4 @@ INSERT INTO users.tasks (user_ttid, task_ttid, task_state, task_description) VAL
 INSERT INTO users.tasks (user_ttid, task_ttid, task_state, task_description) VALUES ('mock-pat-thomas', 'mock-pat-thomas-task-2', 1, "Take a shower.");
 INSERT INTO users.tasks (user_ttid, task_ttid, task_state, task_description) VALUES ('mock-pat-thomas', 'mock-pat-thomas-task-3', 1, "Feed the cats.");
 INSERT INTO users.tasks (user_ttid, task_ttid, task_state, task_description) VALUES ('mock-pat-thomas', 'mock-pat-thomas-task-4', 2, "Eat a sandwich.");
+INSERT INTO users.tasks (user_ttid, task_ttid, task_state, task_description) VALUES ('mock-pat-thomas', 'mock-pat-thomas-task-5', 0, "Buy brussels sprouts.");
