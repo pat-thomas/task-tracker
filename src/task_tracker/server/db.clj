@@ -3,8 +3,6 @@
             [java-jdbc.sql                      :as sql-dsl]
             [task-tracker.server.service-config :refer [config]]))
 
-(def db (config :db))
-
 (defn gen-find-by-sql
   [^clojure.lang.Keyword table ^java.util.Map criteria]
   (str
@@ -25,13 +23,13 @@
 (defn find-by
   [^clojure.lang.Keyword table ^java.util.Map criteria]
   (jdbc/query
-   db
+   (config :db)
    [(gen-find-by-sql table criteria)]))
 
 (defn insert-record
   [^clojure.lang.Keyword table ^java.util.Map params]
   (jdbc/insert!
-   db
+   (config :db)
    table
    params))
 
@@ -52,7 +50,7 @@
   [^clojure.lang.Keyword table ^java.util.Map lookup-fields ^java.util.Map update-params]
   (let [where-clause (sql-dsl/where lookup-fields)]
     (jdbc/update!
-     db
+     (config :db)
      table
      update-params
      where-clause)))
