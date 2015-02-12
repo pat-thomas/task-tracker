@@ -2,7 +2,8 @@
   (:require [om.core :as om  :include-macros true]
             [om.dom  :as dom :include-macros true]
             [task-tracker.app.history :as history]
-            [task-tracker.app.xhr :as xhr])
+            [task-tracker.app.xhr :as xhr]
+            [task-tracker.app.api :as api])
   (:require-macros [om-utils.core :refer [defcomponent]]))
 
 (defcomponent header
@@ -40,18 +41,17 @@
 
 (defcomponent root
   (will-mount
-   (xhr/xhr-req
-    {:method      :get
-     :url         (str "user/" (get-in data [:account-info :user-ttid]) "/tasks")
-     :on-complete (fn [resp]
-                    (om/update! data
-                                :tasks
-                                (map
-                                 (fn [rec]
-                                   {:task-state       (get rec "task_state")
-                                    :task-description (get rec "task_description")
-                                    :task-ttid (get rec "task_ttid")})
-                                 (get resp "recs"))))}))
+   (api/get-user-tasks
+    {:user-ttid (get-in data [:account-info :user-ttid])}
+    (fn [resp]
+      (om/update! data
+                  :tasks
+                  (map
+                   (fn [rec]
+                     {:task-state       (get rec "task_state")
+                      :task-description (get rec "task_description")
+                      :task-ttid (get rec "task_ttid")})
+                   (get resp "recs"))))))
   (render
    (apply
     dom/div
