@@ -1,18 +1,20 @@
 (ns task-tracker.app.components.task-detail
   (:require [om.core              :as om  :include-macros true]
             [om.dom               :as dom :include-macros true]
-            [task-tracker.app.model.task :as task-model]
+            [task-tracker.app.api :as api]
             [task-tracker.app.xhr :as xhr])
   (:require-macros [om-utils.core :refer [defcomponent]]))
 
 (defcomponent root
   (init-state
-   (task-model/get-task
-    (:task-ttid opts)
-    {:on-complete (fn [rec]
-                    (om/set-state! owner
-                                   {:task-state       (get rec "task_state")
-                                    :task-description (get rec "task_description")}))}))
+   (api/get-task
+    {:task-ttid (:task-ttid opts)}
+    (fn [{:strs [rec status]}]
+      (om/set-state!
+       owner
+       {:task-state       (get rec "task_state")
+        :task-description (get rec "task_description")}))))
+  
   (render-state
    (dom/div
     #js {:id "task-detail"}
@@ -28,9 +30,9 @@
                           (om/set-state! owner :task-description val)))}))
      (dom/button
       #js {:onClick (fn [_]
-                      (task-model/save
-                       (:task-ttid opts)
-                       {:on-complete (fn [resp]
-                                       (println resp))
-                        :params      {:task-description (om/get-state owner :task-description)}}))}
+                      (api/post-task
+                       {:task-ttid (:task-ttid opts)}
+                       (fn [resp]
+                         (println resp))
+                       {:task-description (om/get-state owner :task-description)}))}
       "Save")))))
