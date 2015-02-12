@@ -1,9 +1,8 @@
 (ns task-tracker.app.components.task-board
-  (:require [om.core :as om  :include-macros true]
-            [om.dom  :as dom :include-macros true]
+  (:require [om.core                  :as om  :include-macros true]
+            [om.dom                   :as dom :include-macros true]
             [task-tracker.app.history :as history]
-            [task-tracker.app.xhr :as xhr]
-            [task-tracker.app.api :as api])
+            [task-tracker.app.api     :as api])
   (:require-macros [om-utils.core :refer [defcomponent]]))
 
 (defcomponent header
