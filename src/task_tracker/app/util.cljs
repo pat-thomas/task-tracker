@@ -17,3 +17,8 @@
   [int-str]
   (when (string? int-str)
     (.parseInt js/window int-str)))
+
+(defn vec-remove
+  [coll pos]
+  (vec (concat (subvec coll 0 pos)
+               (subvec coll (inc pos)))))

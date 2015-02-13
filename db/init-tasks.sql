@@ -14,3 +14,11 @@ INSERT INTO users.tasks (user_ttid, task_ttid, task_state, task_description) VAL
 INSERT INTO users.tasks (user_ttid, task_ttid, task_state, task_description) VALUES ('mock-pat-thomas', 'mock-pat-thomas-task-3', 1, "Feed the cats.");
 INSERT INTO users.tasks (user_ttid, task_ttid, task_state, task_description) VALUES ('mock-pat-thomas', 'mock-pat-thomas-task-4', 2, "Eat a sandwich.");
 INSERT INTO users.tasks (user_ttid, task_ttid, task_state, task_description) VALUES ('mock-pat-thomas', 'mock-pat-thomas-task-5', 0, "Buy brussels sprouts.");
+
+CREATE TABLE IF NOT EXISTS users.taskboard_configuration (
+  user_ttid VARCHAR(255),
+  name VARCHAR(255),
+  value VARCHAR(255)
+);
+
+INSERT INTO users.taskboard_configuration (user_ttid, name, value) VALUES ('mock-pat-thomas', 'states', '["To Do", "In Progress", "Done"]');

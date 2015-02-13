@@ -43,6 +43,32 @@ body {
 }
 
 #account {
+  #configure-taskboard-container {
+    background-color: #300;
+    height: 200px;
+    width: 90%;
+    padding: 8px;
+
+    #task-states {
+      .task-state {
+        margin: 4px;
+        padding: 4px;
+        background-color: #400;
+        .delete-button {
+          font-size: 0.9em;
+          height: 18px;
+          width: 50px;
+          float: right;
+          text-align: center;
+          background-color: #600;
+          &:hover {
+            background-color: #800;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
   .account-field {
     margin-bottom: 5px;
     .account-field-label {

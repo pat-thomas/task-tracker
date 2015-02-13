@@ -1,6 +1,7 @@
 (ns task-tracker.app.components.account
   (:require [om.core :as om  :include-macros true]
-            [om.dom  :as dom :include-macros true])
+            [om.dom  :as dom :include-macros true]
+            [task-tracker.app.components.account.configure-taskboard :as configure-taskboard])
   (:require-macros [om-utils.core :refer [defcomponent]]))
 
 (defcomponent account-field
@@ -23,10 +24,11 @@
   (render
    (dom/div
     #js {:id "account"}
-    (om/build account-field (:account-info data) {:opts {:field-name       "username"
-                                                         :field-label-text "Username"}})
-    (om/build account-field (:account-info data) {:opts {:field-name       "email"
-                                                         :field-label-text "Email"}})
-    (om/build account-field (:account-info data) {:opts {:field-name       "password"
-                                                         :field-label-text "Password"
-                                                         :field-type       "password"}}))))
+    #_(om/build account-field (:account-info data) {:opts {:field-name       "username"
+                                                           :field-label-text "Username"}})
+    #_(om/build account-field (:account-info data) {:opts {:field-name       "email"
+                                                           :field-label-text "Email"}})
+    #_(om/build account-field (:account-info data) {:opts {:field-name       "password"
+                                                           :field-label-text "Password"
+                                                           :field-type       "password"}})
+    (om/build configure-taskboard/root data))))
