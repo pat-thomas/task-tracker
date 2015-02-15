@@ -38,26 +38,33 @@
             (om/build cell data {:opts (assoc task-data :column-number column-number)}))
           data)))))
 
+(defn states->taskboard-columns
+  [states]
+  (map-indexed
+   (fn [idx state]
+     {:column-title state :column-number idx})
+   states))
+
 (defcomponent root
   (will-mount
-   (api/get-user-tasks
-    {:user-ttid (get-in data [:account-info :user-ttid])}
-    (fn [resp]
-      (om/update! data
-                  :tasks
-                  (map
-                   (fn [rec]
-                     {:task-state       (get rec "task_state")
-                      :task-description (get rec "task_description")
-                      :task-ttid (get rec "task_ttid")})
-                   (get resp "recs"))))))
+   (let [user-ttid (get-in data [:account-info :user-ttid])]
+     (api/get-user-taskboard
+      {:user-ttid user-ttid}
+      (fn [{:strs [recs]}]
+        (let [tasks  (map (fn [rec]
+                            {:task-state       (get rec "task_state")
+                             :task-description (get rec "task_description")
+                             :task-ttid        (get rec "task_ttid")})
+                          (get recs "tasks"))
+              config (-> recs
+                         (get "configuration")
+                         (update-in ["states"] #(.parse js/JSON %)))]
+          (om/update! data :tasks tasks)
+          (om/update! data :taskboard-configuration config))))))
   (render
    (apply
     dom/div
     #js {:id "task-board"}
     (map (fn [column-data]
            (om/build column (:tasks data) {:opts column-data}))
-         (or (:task-board-columns data) ;; fetch this from server eventually
-             [{:column-title "To Do" :column-number 0}
-              {:column-title "In Progress" :column-number 1}
-              {:column-title "Done" :column-number 2}])))))
+         (-> data :taskboard-configuration (get "states") states->taskboard-columns)))))

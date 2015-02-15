@@ -1,8 +1,8 @@
 (ns task-tracker.app.components.account.configure-taskboard
-  (:require [om.core              :as om  :include-macros true]
-            [om.dom               :as dom :include-macros true]
+  (:require [om.core               :as om  :include-macros true]
+            [om.dom                :as dom :include-macros true]
             [task-tracker.app.util :as util]
-            [task-tracker.app.api :as api])
+            [task-tracker.app.api  :as api])
   (:require-macros [om-utils.core :refer [defcomponent]]))
 
 (defcomponent delete-button

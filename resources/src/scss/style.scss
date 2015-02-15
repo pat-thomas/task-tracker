@@ -17,6 +17,7 @@ body {
   color:            #fff;
   display:          inline-block;
   position:         relative;
+  margin-bottom:    10px;
 
   ul#navbar-list {
     position: absolute;
@@ -38,15 +39,11 @@ body {
   }
 }
 
-#content-container {
-  padding: 10px;
-}
-
 #account {
   #configure-taskboard-container {
     background-color: #300;
     height: 200px;
-    width: 90%;
+    width: 100%;
     padding: 8px;
 
     #task-states {
